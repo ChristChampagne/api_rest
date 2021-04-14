@@ -1,0 +1,35 @@
+<div class="formulario">
+    <Header />
+    <div class="center">
+        <section id="content">
+
+            <h1 class="subheader" v-if="!isEdit">Crear Articulo</h1>
+            <h1 class="subheader" v-else>Editar Articulo</h1>
+            <!-- Aqui va el formulario -->
+            <form class="mid-form" v-on:submit.prevent="save">
+                <div class="form-group">
+                    <label for="title">Titulo</label>
+                    <input type="text" name="title" v-model="articulo.title" required />
+                </div>
+                <div class="form-group">
+                    <label for="content">Contenido</label>
+                    <textarea name="content" v-model="articulo.content" required>
+            </textarea>
+                </div>
+                <div class="form-group">
+                    <label for="image">Imagen</label>
+                    <div v-if="isEdit && articulo.image">
+                        <img class="image-wrap" :src="url + 'sacarImagen/' + articulo.image" :alt="articulo.title" />
+                    </div>
+                    <input type="file" id="file" ref="file" name="file0" v-on:change="fileChange()" />
+
+                </div>
+                <div class="clearfix"></div>
+                <input type="submit" name="enviar" value="Guardar" class="btn btn-success" />
+            </form>
+        </section>
+        <Sidebar />
+        <div class="clearfix"></div>
+    </div>
+    <Footer />
+</div>
